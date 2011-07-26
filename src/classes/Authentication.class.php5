@@ -11,6 +11,7 @@ class Authentication {
 	
 	protected $_apiKey;
 	
+	
 	// --------------------------------------------------
 	public function __construct() {
 		
