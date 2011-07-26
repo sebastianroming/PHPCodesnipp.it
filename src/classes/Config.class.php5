@@ -20,7 +20,9 @@ class Config {
 	// --------------------------------------------------
 	public static function get($keyPath) {
 		
-		self::_init();
+		if (self::$_settings === false) {
+			self::$_settings = &$GLOBALS['config'];
+		}
 
 		if (!is_array($keyPath)) {
 
@@ -56,15 +58,6 @@ class Config {
 
 		return $settings;
 		
-	}
-	
-	// --------------------------------------------------
-	protected static function _init() {
-
-		if (self::$_settings === false) {
-			self::$_settings = &$GLOBALS['config'];
-		}
-
 	}
 	
 }
