@@ -28,7 +28,7 @@ class Authentication {
 	public function auth() {
 		
 		$curlRequest = new CurlRequest(Config::get('APIEndpoint'));
-		$curlRequest->setRequestMethod('POST');
+		$curlRequest->setRequestMethod('GET');
 		$curlRequest->setUrlParam('auth');
 		
 		$authResult = $curlRequest->request();

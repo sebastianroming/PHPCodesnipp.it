@@ -11,4 +11,5 @@
 $config = array();
 
 $config['APIEndpoint'] = 'http://codesnipp.it/v2/api';
+$config['PHPCodesnippitVersion'] = '0.0.1';
 ?>

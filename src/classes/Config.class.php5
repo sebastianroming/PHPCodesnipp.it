@@ -9,7 +9,7 @@
 
 class Config {
 	
-	protected static $_settings = false;
+	protected static $_config = array();
 	
 	
 	// --------------------------------------------------
@@ -18,45 +18,33 @@ class Config {
 	}
 	
 	// --------------------------------------------------
-	public static function get($keyPath) {
+	public static function get($configKey) {
 		
-		if (self::$_settings === false) {
-			self::$_settings = &$GLOBALS['config'];
+		if (empty(self::$_config)) {
+			self::$_config = &$GLOBALS['config'];
 		}
 
-		if (!is_array($keyPath)) {
+		if (!is_array($configKey)) {
 
-			$funcArguments = func_get_args();
-
-			if (count($funcArguments) > 1) {
-
-				$keyPath = $funcArguments;
-
-			} else {
-
-				$keyPath = array($keyPath);
-
-			}
+			$args = func_get_args();
+			
+			$configKey = (count($args) > 1) ? $args : array($configKey);
 
 		}
 
-		$settings = self::$_settings;
-
-		foreach ($keyPath as $key) {
-
-			if (array_key_exists($key, $settings)) {
-
-				$settings = $settings[$key];
-
-			} else {
-
+		$config = self::$_config;
+		
+		foreach ($configKey as $key) {
+			
+			if (!array_key_exists($key, $config)) {
 				return null;
-
 			}
-
+			
+			$config = $config[$key];
+			
 		}
 
-		return $settings;
+		return $config;
 		
 	}
 	
